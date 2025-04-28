@@ -1,37 +1,72 @@
 #include <stdio.h>
 
-int main() {
-    int tabuleiro[10][10] = {0};
+void habilidade_cone() {
+    int matriz[5][5] = {0};
 
-    // Posicionar navios:
-    // 1 - Vertical
-    for (int i = 0; i < 4; i++) {
-        tabuleiro[1 + i][2] = 3;
+    // Criando formato de cone
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            if ((j >= 2 - i) && (j <= 2 + i)) {
+                matriz[i][j] = 1;
+            }
+        }
     }
 
-    // 2 - Horizontal
-    for (int j = 0; j < 4; j++) {
-        tabuleiro[6][4 + j] = 3;
-    }
-
-    // 3 - Diagonal principal
-    for (int i = 0; i < 4; i++) {
-        tabuleiro[i][i] = 3;
-    }
-
-    // 4 - Diagonal secundária
-    for (int i = 0; i < 4; i++) {
-        tabuleiro[i][9 - i] = 3;
-    }
-
-    // Exibir o tabuleiro completo
-    printf("Tabuleiro 10x10:\n");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            printf("%d ", tabuleiro[i][j]);
+    printf("Habilidade: Cone\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", matriz[i][j]);
         }
         printf("\n");
     }
+    printf("\n");
+}
+
+void habilidade_cruz() {
+    int matriz[5][5] = {0};
+
+    // Criando formato de cruz
+    for (int i = 0; i < 5; i++) {
+        matriz[2][i] = 1; // linha do meio
+        matriz[i][2] = 1; // coluna do meio
+    }
+
+    printf("Habilidade: Cruz\n");
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void habilidade_octaedro() {
+    int matriz[5][5] = {0};
+
+    // Criando formato de octaedro
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            if ((i == 0 && j == 2) || (i == 1 && (j >= 1 && j <= 3)) || (i == 2 && j == 2)) {
+                matriz[i][j] = 1;
+            }
+        }
+    }
+
+    printf("Habilidade: Octaedro\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+
+int main() {
+    habilidade_cone();
+    habilidade_cruz();
+    habilidade_octaedro();
 
     return 0;
 }
